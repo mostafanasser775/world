@@ -2,6 +2,7 @@ import streamlit as st
 from transformers import RobertaTokenizer, T5ForConditionalGeneration
 import wget
 import os
+@st.cache(suppress_st_warning=True)  # 👈 Changed this
 if os.path.isfile('./pytorch_model.bin'):
   print('exists')
 else:
@@ -25,6 +26,6 @@ text = "make summition of 1 and 2"
 input_ids = tokenizer(text, return_tensors="pt").input_ids
 
 # simply generate one code span
-generated_ids = model.generate(input_ids, max_length=50)
+generated_ids = model.generate(input_ids, max_length=100)
 code=tokenizer.decode(generated_ids[0], skip_special_tokens=True)
 st.write(code)
