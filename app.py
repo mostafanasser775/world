@@ -2,7 +2,6 @@ import streamlit as st
 from transformers import RobertaTokenizer, T5ForConditionalGeneration
 import wget
 import os
-@st.cache()  # 👈 Changed this
 if os.path.isfile('./pytorch_model.bin'):
   print('exists')
 else:
