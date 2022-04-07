@@ -1,1 +1,7 @@
 streamlit
+wget
+torch
+sklearn
+keras
+tdqm
+transformers
