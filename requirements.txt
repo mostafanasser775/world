@@ -5,3 +5,4 @@ sklearn
 keras
 tdqm
 transformers
+Pyrebase
