@@ -3,6 +3,5 @@ wget
 torch
 sklearn
 keras
-tdqm
 transformers
 firebase_admin
