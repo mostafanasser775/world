@@ -24,6 +24,8 @@ config={
 
 if os.path.isfile('./pytorch_model.bin'):
   print('exists')
+  db=firestore.client()
+  docs = db.collection('code').get()
   code=str(docs[0].to_dict())
   len= len(code)
 
