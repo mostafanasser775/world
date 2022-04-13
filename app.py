@@ -19,21 +19,27 @@ config={
   "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-q121d%40gpt52-88644.iam.gserviceaccount.com"
 }
 
-cred = credentials.Certificate(config)
-firebase_admin.initialize_app(cred)
-db=firestore.client()
-docs = db.collection('code').get()
 
-code=str(docs[0].to_dict())
-len= len(code)
-
-code=code[13:len-2]
-st.write(code)
 
 
 if os.path.isfile('./pytorch_model.bin'):
   print('exists')
+  code=str(docs[0].to_dict())
+  len= len(code)
+
+  code=code[13:len-2]
+  st.write(code)
 else:
+  cred = credentials.Certificate(config)
+  firebase_admin.initialize_app(cred)
+  db=firestore.client()
+  docs = db.collection('code').get()
+  code=str(docs[0].to_dict())
+  len= len(code)
+
+  code=code[13:len-2]
+  st.write(code)
+  
   url='https://storage.googleapis.com/sfr-codet5-data-research/finetuned_models/concode_codet5_base.bin'
   wget.download(url)
   old_name = r"./concode_codet5_base.bin"
