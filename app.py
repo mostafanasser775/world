@@ -24,24 +24,10 @@ config={
 
 if os.path.isfile('./pytorch_model.bin'):
   print('exists')
-  db=firestore.client()
-  docs = db.collection('code').get()
-  code=str(docs[0].to_dict())
-  len= len(code)
-
-  code=code[13:len-2]
-  st.write(code)
 else:
   cred = credentials.Certificate(config)
   firebase_admin.initialize_app(cred)
-  db=firestore.client()
-  docs = db.collection('code').get()
-  code=str(docs[0].to_dict())
-  len= len(code)
 
-  code=code[13:len-2]
-  st.write(code)
-  
   url='https://storage.googleapis.com/sfr-codet5-data-research/finetuned_models/concode_codet5_base.bin'
   wget.download(url)
   old_name = r"./concode_codet5_base.bin"
@@ -53,7 +39,12 @@ else:
 
 tokenizer = RobertaTokenizer.from_pretrained('Salesforce/codet5-base')
 
-
+db=firestore.client()
+docs = db.collection('code').get()
+code=str(docs[0].to_dict())
+len= len(code)
+code=code[13:len-2]
+st.write(code) 
 # Renaming the file
 
 model = T5ForConditionalGeneration.from_pretrained('./')
