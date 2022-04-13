@@ -43,7 +43,7 @@ db=firestore.client()
 docs = db.collection('code').get()
 code=str(docs[0].to_dict())
 len= len(code)
-code=code[9:len-2]
+code=code[10:len-2]
 st.write(code) 
 # Renaming the file
 
