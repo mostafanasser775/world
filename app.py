@@ -51,7 +51,7 @@ tokenizer = RobertaTokenizer.from_pretrained('Salesforce/codet5-base')
 model = T5ForConditionalGeneration.from_pretrained('./')
 
 text = "make summition of 1 and 2"
-input_ids = tokenizer(text, return_tensors="pt").input_ids
+input_ids = tokenizer(code, return_tensors="pt").input_ids
 
 # simply generate one code span
 generated_ids = model.generate(input_ids, max_length=100)
