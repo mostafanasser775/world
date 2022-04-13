@@ -6,3 +6,4 @@ keras
 tdqm
 transformers
 Pyrebase
+firebase_admin
