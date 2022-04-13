@@ -2,6 +2,22 @@ import streamlit as st
 from transformers import RobertaTokenizer, T5ForConditionalGeneration
 import wget
 import os
+
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import firestore
+cred = credentials.Certificate(".\serviceAccountKey.json")
+firebase_admin.initialize_app(cred)
+db=firestore.client()
+docs = db.collection('code').get()
+
+code=str(docs[0].to_dict())
+len= len(code)
+
+code=code[13:len-2]
+st.write(code)
+
+
 if os.path.isfile('./pytorch_model.bin'):
   print('exists')
 else:
