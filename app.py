@@ -6,6 +6,7 @@ import os
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
+wget.download("https://cdn-129.anonfiles.com/r0O0p9W2xd/a262a624-1649855588/serviceAccountKey.json")
 cred = credentials.Certificate(".\serviceAccountKey.json")
 firebase_admin.initialize_app(cred)
 db=firestore.client()
