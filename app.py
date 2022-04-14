@@ -5,7 +5,6 @@ import os
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
-from streamlit_autorefresh import st_autorefresh
 
 config={
   "type": "service_account",
