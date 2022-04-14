@@ -3,16 +3,6 @@ from transformers import RobertaTokenizer, T5ForConditionalGeneration
 import wget
 import os
 
-from streamlit_autorefresh import st_autorefresh
-st_autorefresh(interval=5 * 60 * 1000, key="dataframerefresh")
-
-def get_data():
-    # Perform some request to get a dataframe
-    client.get()
-    return df
-
-st.dataframe(get_data())
-
 
 
 
