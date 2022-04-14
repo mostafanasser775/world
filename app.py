@@ -7,10 +7,6 @@ from firebase_admin import credentials
 from firebase_admin import firestore
 from streamlit_autorefresh import st_autorefresh
 
-# Run the autorefresh about every 2000 milliseconds (2 seconds) and stop
-# after it's been refreshed 100 times.
-count = st_autorefresh(interval=30000, limit=100, key="fizzbuzzcounter")
-
 config={
   "type": "service_account",
   "project_id": "graduation-5ebe4",
@@ -30,8 +26,6 @@ config={
 def loadmodel(modelname):
   m="hello"
   return m
-
-
 
 
 if os.path.isfile('./pytorch_model.bin'):
