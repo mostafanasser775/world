@@ -1,8 +1,7 @@
-streamlit
+streamlit==0.85.0
 wget
 torch
 sklearn
 keras
 transformers
 firebase_admin
-streamlit-autorefresh
