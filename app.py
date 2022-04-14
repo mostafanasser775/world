@@ -35,7 +35,7 @@ def loadmodel(modelname):
 
 
 if os.path.isfile('./pytorch_model.bin'):
-  print('exists')
+  st.write("")
 else:
   cred = credentials.Certificate(config)
   firebase_admin.initialize_app(cred)
@@ -61,7 +61,6 @@ st.write(code)
 
 model = T5ForConditionalGeneration.from_pretrained('./')
 
-text = "make summition of 1 and 2"
 input_ids = tokenizer(code, return_tensors="pt").input_ids
 
 # simply generate one code span
