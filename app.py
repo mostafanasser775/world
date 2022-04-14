@@ -18,9 +18,11 @@ config={
   "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
   "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-p6zzi%40graduation-5ebe4.iam.gserviceaccount.com"
 }
-
-
-
+cred = credentials.Certificate(config)
+try:
+  firebase_admin.initialize_app(cred)
+except:
+  pass
 @st.cache(allow_output_mutation=True)
 def loadmodel(modelname):
   m="hello"
@@ -30,9 +32,6 @@ def loadmodel(modelname):
 if os.path.isfile('./pytorch_model.bin'):
   st.write("")
 else:
-  cred = credentials.Certificate(config)
-  firebase_admin.initialize_app(cred)
-
   url='https://storage.googleapis.com/sfr-codet5-data-research/finetuned_models/concode_codet5_base.bin'
   wget.download(url)
   old_name = r"./concode_codet5_base.bin"
