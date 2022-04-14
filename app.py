@@ -60,4 +60,4 @@ input_ids = tokenizer(code, return_tensors="pt").input_ids
 generated_ids = model.generate(input_ids, max_length=100)
 code=tokenizer.decode(generated_ids[0], skip_special_tokens=True)
 st.write(code)
-db.collection('output').document("p1").update({"code": 50}) # field already exists
+db.collection('output').document("p1").update({"code":code}) # field already exists
