@@ -5,3 +5,4 @@ sklearn
 keras
 transformers
 firebase_admin
+streamlit-autorefresh
