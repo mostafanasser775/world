@@ -27,16 +27,16 @@ def loadmodel():
   firebase_admin.initialize_app(cred)
   if os.path.isfile('./pytorch_model.bin'):
     m = ""
-    else:
-      url = 'https://storage.googleapis.com/sfr-codet5-data-research/finetuned_models/concode_codet5_base.bin'
-      wget.download(url)
-      old_name = r"./concode_codet5_base.bin"
-      new_name = r"./pytorch_model.bin"
-      os.rename(old_name, new_name)
+  else:
+    url = 'https://storage.googleapis.com/sfr-codet5-data-research/finetuned_models/concode_codet5_base.bin'
+    wget.download(url)
+    old_name = r"./concode_codet5_base.bin"
+    new_name = r"./pytorch_model.bin"
+    os.rename(old_name, new_name)
 
-      url = 'https://storage.googleapis.com/sfr-codet5-data-research/pretrained_models/codet5_base/config.json'
-      wget.download(url)
-    model = T5ForConditionalGeneration.from_pretrained('./')
+    url = 'https://storage.googleapis.com/sfr-codet5-data-research/pretrained_models/codet5_base/config.json'
+    wget.download(url)
+  model = T5ForConditionalGeneration.from_pretrained('./')
   return model
 
 
