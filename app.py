@@ -2,23 +2,15 @@ import streamlit as st
 from transformers import RobertaTokenizer, T5ForConditionalGeneration
 import wget
 import os
-
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import firestore
 from streamlit_autorefresh import st_autorefresh
 
 # Run the autorefresh about every 2000 milliseconds (2 seconds) and stop
 # after it's been refreshed 100 times.
 count = st_autorefresh(interval=30000, limit=100, key="fizzbuzzcounter")
 
-
-
-
-import firebase_admin
-from firebase_admin import credentials
-from firebase_admin import firestore
-@st.cache(allow_output_mutation=True)
-def loadmodel(modelname):
-  m="hello"
-  return m
 config={
   "type": "service_account",
   "project_id": "graduation-5ebe4",
@@ -31,6 +23,13 @@ config={
   "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
   "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-p6zzi%40graduation-5ebe4.iam.gserviceaccount.com"
 }
+
+
+
+@st.cache(allow_output_mutation=True)
+def loadmodel(modelname):
+  m="hello"
+  return m
 
 
 
