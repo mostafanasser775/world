@@ -23,25 +23,26 @@ config={
 
 
 @st.cache(allow_output_mutation=True)
-def loadmodel(modelname):
-  m="hello"
-  return m
+def loadmodel():
+    if os.path.isfile('./pytorch_model.bin'):
+        m = ""
+    else:
+        cred = credentials.Certificate(config)
+        firebase_admin.initialize_app(cred)
+
+        url = 'https://storage.googleapis.com/sfr-codet5-data-research/finetuned_models/concode_codet5_base.bin'
+        wget.download(url)
+        old_name = r"./concode_codet5_base.bin"
+        new_name = r"./pytorch_model.bin"
+        os.rename(old_name, new_name)
+
+        url = 'https://storage.googleapis.com/sfr-codet5-data-research/pretrained_models/codet5_base/config.json'
+        wget.download(url)
+    model = T5ForConditionalGeneration.from_pretrained('./')
+    return model
 
 
-if os.path.isfile('./pytorch_model.bin'):
-  st.write("")
-else:
-  cred = credentials.Certificate(config)
-  firebase_admin.initialize_app(cred)
 
-  url='https://storage.googleapis.com/sfr-codet5-data-research/finetuned_models/concode_codet5_base.bin'
-  wget.download(url)
-  old_name = r"./concode_codet5_base.bin"
-  new_name = r"./pytorch_model.bin"
-  os.rename(old_name, new_name)
-
-  url='https://storage.googleapis.com/sfr-codet5-data-research/pretrained_models/codet5_base/config.json'
-  wget.download(url)
 
 tokenizer = RobertaTokenizer.from_pretrained('Salesforce/codet5-base')
 
@@ -50,11 +51,10 @@ docs = db.collection('code').get()
 code=str(docs[0].to_dict())
 len= len(code)
 code=code[10:len-2]
-st.write(code) 
+st.write(code)
 # Renaming the file
 
-model = T5ForConditionalGeneration.from_pretrained('./')
-
+model=loadmodel()
 input_ids = tokenizer(code, return_tensors="pt").input_ids
 
 # simply generate one code span
