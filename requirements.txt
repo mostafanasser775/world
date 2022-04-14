@@ -1,4 +1,4 @@
-streamlit==0.85.0
+streamlit
 wget
 torch
 sklearn
